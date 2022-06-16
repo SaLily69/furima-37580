@@ -26,8 +26,8 @@
 | product_category_id  | integer    | null: false                     |
 | product_condition_id | integer    | null: false                     |
 | shipping_cost_id     | integer    | null: false                     |
-| ship_from_id         | integer    | null: false                     |
-| shippind_days_id     | integer    | null: false                     |
+| prefecture_id        | integer    | null: false                     |
+| shipping_day_id      | integer    | null: false                     |
 | price                | integer    | null: false                     |
 | user                 | references | null: false ,foreign_key: true  |
 
@@ -51,15 +51,15 @@
 
 ## shippingsテーブル
 
-| Column       | Type        | Options                         |
-| ------------ | ----------- | ------------------------------- |
-| post_number  | string      | null: false                     |
-| prefecture   | integer     | null: false                     |
-| city         | string      | null: false                     |
-| address      | string      | null: false                     |
-| building     | string      |                                 |
-| tel          | string      | null: false                     |
-| purchase     | references  | null: false ,foreign_key: true  |
+| Column        | Type        | Options                         |
+| ------------- | ----------- | ------------------------------- |
+| post_number   | string      | null: false                     |
+| prefecture_id | integer     | null: false                     |
+| city          | string      | null: false                     |
+| address       | string      | null: false                     |
+| house_number  | string      |                                 |
+| tel           | string      | null: false                     |
+| purchase      | references  | null: false ,foreign_key: true  |
 
 ### Association
 - belongs_to :purchase
