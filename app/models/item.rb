@@ -24,4 +24,6 @@ class Item < ApplicationRecord
     self.image.attached?
   end
 
+  belongs_to :user
+
 end
