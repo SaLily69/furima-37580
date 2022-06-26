@@ -9,7 +9,7 @@ class Item < ApplicationRecord
   has_one_attached :image
   
   validates :image,                presence: true
-  validates :product_name,         presence: true, unless: :was_attached?
+  validates :product_name,         presence: true
   validates :product_text,         presence: true
   validates :product_category_id,  numericality: { other_than: 1 , message: "can't be blank"}
   validates :product_condition_id, numericality: { other_than: 1 , message: "can't be blank"}
