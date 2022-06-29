@@ -6,7 +6,8 @@ class ItemsController < ApplicationController
   end
   
   def create
-    @item = Item.create(item_params)
+    authenticate_user!
+    @item = Item.new(item_params)
     if @item.save
       redirect_to root_path(@item)
     else
