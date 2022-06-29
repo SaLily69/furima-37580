@@ -51,6 +51,31 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping day can't be blank")
       end
+      it '商品カテゴリーに「---」が選択されている場合は出品できない'do
+        @item.product_category_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Product category can't be blank")
+      end
+      it '商品状態に「---」が選択されている場合は出品できない'do
+        @item.product_condition_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Product condition can't be blank")
+      end
+      it '配送料の負担に「---」が選択されている場合は出品できない'do
+        @item.shipping_cost_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping cost can't be blank")
+      end
+      it '発送元の地域に「---」が選択されている場合は出品できない'do
+        @item.prefecture_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+      end
+      it '発送までの日数に「---」が選択されている場合は出品できない'do
+        @item.shipping_day_id = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping day can't be blank")
+      end
       it '価格が空では商品の出品ができない' do
         @item.price = ''
         @item.valid?
@@ -70,6 +95,12 @@ RSpec.describe Item, type: :model do
         @item.price = '５５５'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+      it 'userが紐づいていなければ出品できない'do
+        @item.user_id = nil
+        @item.valid?
+        binding.pry
+        expect(@item.errors.full_messages).to include("")
       end
     end
   end
