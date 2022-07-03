@@ -23,8 +23,10 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item = Item.find(params[:id])
-    move_to_index
+    if user_signed_in?
+      @item = Item.find(params[:id])
+      move_to_index
+    end 
   end
 
   def update
