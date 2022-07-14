@@ -10,7 +10,6 @@ class PurchaseShipping
     validates :address
     validates :tel, numericality: { only_integer: true }, length: { in: 10..11 }
     validates :prefecture_id, numericality: {other_than: 0, message: "can't be blank"}
-    #validates :purchase_id
     validates :token
   end
 
