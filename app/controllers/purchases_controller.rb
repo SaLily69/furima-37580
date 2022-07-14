@@ -4,13 +4,12 @@ class PurchasesController < ApplicationController
 
   def index
     @purchase_shipping = PurchaseShipping.new
-    if current_user.id == @item.user_id
+    if current_user.id == @item.user_id || Purchase.exists?(item_id: @item.id)
       redirect_to root_path
     end
   end
 
   def create
-    binding.pry
     @purchase_shipping = PurchaseShipping.new(purchase_params)
     if @purchase_shipping.valid?
       pay_item
