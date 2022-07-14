@@ -73,6 +73,18 @@ RSpec.describe PurchaseShipping, type: :model do
       expect(@purchase_shipping.errors.full_messages).to include("Tel is not a number")
       sleep(1)
     end
+    it "telは9桁以下だと登録できないこと" do
+      @purchase_shipping.tel = '01234567'
+      @purchase_shipping.valid?
+      expect(@purchase_shipping.errors.full_messages).to include("Tel is too short (minimum is 10 characters)")
+      sleep(1)
+    end
+    it "telは12桁以上だと登録できないこと" do
+      @purchase_shipping.tel = '012345678910'
+      @purchase_shipping.valid?
+      expect(@purchase_shipping.errors.full_messages).to include("Tel is too long (maximum is 11 characters)")
+      sleep(1)
+    end
     it "itemが紐づいていないと購入できないこと" do
       @purchase_shipping.item_id = nil
       @purchase_shipping.valid?
